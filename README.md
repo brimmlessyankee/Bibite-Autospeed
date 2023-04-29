@@ -23,8 +23,11 @@ https://youtu.be/DqgDdp_kmjQ
 * If this does not work run these commands individually 
 
 pip install pyautogui
+
 pip install pytesseract
+
 pip install pygetwindow
+
 pip install opencv-python
 
 5. Use Mpos.exe to figure out the coordinates of stats box (https://ibb.co/khnMcMn) and the 1x speed position of the speed slider (https://ibb.co/phpjC6P)
