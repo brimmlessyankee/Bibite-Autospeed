@@ -20,6 +20,13 @@ https://youtu.be/DqgDdp_kmjQ
 
 4. Run "pip install -r requirements.txt" inside the repo.
 
+* If this does not work run these commands individually 
+
+pip install pyautogui
+pip install pytesseract
+pip install pygetwindow
+pip install opencv-python
+
 5. Use Mpos.exe to figure out the coordinates of stats box (https://ibb.co/khnMcMn) and the 1x speed position of the speed slider (https://ibb.co/phpjC6P)
 
 6. Configure software by changing the screen_bbox = (left of box, top of box, right of box, bottom of box) to the coordinates captured using Mpos.exe
