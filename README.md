@@ -60,3 +60,6 @@ Running fast means that the software deems there is room to increase simulator s
 
 #### How do I quit the program?
 The program will automatically quit if you pause your simulation
+
+#### My speed keeps bouncing back and forth at 1.1
+This is a bug at 720p resolution where the program reads 1.1 as 11. I am working on fixing this but for now just change to 768p to avoid this.
