@@ -45,3 +45,5 @@ The threshold is the minimum allowed frames per tick (FPT). For example at 60fps
 
 Margin is how close the actual fpt has to be to your set threshold. I would recommend a margin betwee 1-2. 1 Might be a little jittery whilst 2 might be too lax, so find what you deem best. Although more testing is required so feel free to try any value.
 
+#### What does "Running fast", "Running Smoothly" and "Lag Detected" mean?
+Running fast means that the software deems there is room to increase simulator speed, Running Smoothly will maintain simulator speed and Lag Detected will decrease simulator speed.
