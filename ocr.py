@@ -1,3 +1,4 @@
+import argparse
 import cv2
 import numpy as np
 from PIL import ImageGrab, Image
@@ -6,29 +7,27 @@ import pytesseract
 import re
 import pyautogui
 
-def read_screen(screen_bbox, threshold, margin, process_every_n_frames=1): # Change "process_every_n_frames" for the program to run at a higher or slower checking speed
+def read_screen(screen_bbox, threshold, margin, process_every_n_frames=1, debug=False):
     frame_count = 0
-    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"  # Set the Tesseract executable path
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-    initial_mouse_x, initial_mouse_y = x, y  # Set the desired initial mouse position
+    initial_mouse_x, initial_mouse_y = x, y
     pyautogui.moveTo(initial_mouse_x, initial_mouse_y)
 
     def lag():
         print("Lag detected")
-        pyautogui.mouseDown()  # Press the left mouse button
-        pyautogui.move(-1, 0)  # Move the mouse 2 pixels to the left
-        pyautogui.mouseUp()  # Release the left mouse button
+        pyautogui.mouseDown()
+        pyautogui.move(-1, 0)
+        pyautogui.mouseUp()
 
     def smooth():
         print("Running smoothly")
-        # Do nothing
 
     def fast():
         print("Running fast")
-        pyautogui.mouseDown()  # Press the left mouse button
-        pyautogui.move(1, 0)  # Move the mouse 2 pixels to the right
-        pyautogui.mouseUp()  # Release the left mouse button
-
+        pyautogui.mouseDown()
+        pyautogui.move(1, 0)
+        pyautogui.mouseUp()
 
     while True:
         screenshot = ImageGrab.grab(bbox=screen_bbox)
@@ -38,12 +37,16 @@ def read_screen(screen_bbox, threshold, margin, process_every_n_frames=1): # Cha
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             text = pytesseract.image_to_string(frame_gray)
 
-            speed_match = re.search(r'(x)(\d+(\.\d+)?)', text)
+            speed_match = re.search(r'(x)(\d+)(\.\d{1,2})?', text)
             fps_match = re.search(r'(FPS\s*:\s*)(\d+)', text)
 
             if speed_match and fps_match:
-                speed = float(speed_match.group(2))
+                speed = float(speed_match.group(2) + (speed_match.group(3) or '.0'))
                 fps = int(fps_match.group(2))
+
+                if debug:
+                    print(f"Speed: {speed}, FPS: {fps}")
+
                 ratio = fps / speed
 
                 if ratio < threshold - margin:
@@ -62,10 +65,12 @@ def read_screen(screen_bbox, threshold, margin, process_every_n_frames=1): # Cha
             break
 
 
-
-
 if __name__ == "__main__":
-    screen_bbox = (left of box, top of box, right of box, bottom of box)  # Replace with the desired coordinates
-    threshold = 10  # Replace with the desired number for the threshold
-    margin = 2   # Replace with the desired margin
-    read_screen(screen_bbox, threshold, margin)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--debug", action="store_true", help="Enable debug mode")
+    args = parser.parse_args()
+
+    screen_bbox = (left of box, top of box, right of box, bottom of box)
+    threshold = 8
+    margin = 1.5
+    read_screen(screen_bbox, threshold, margin, debug=args.debug)
