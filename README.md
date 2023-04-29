@@ -47,3 +47,6 @@ Margin is how close the actual fpt has to be to your set threshold. I would reco
 
 #### What does "Running fast", "Running Smoothly" and "Lag Detected" mean?
 Running fast means that the software deems there is room to increase simulator speed, Running Smoothly will maintain simulator speed and Lag Detected will decrease simulator speed.
+
+#### How do I quit the program?
+The program will automatically quit if you pause your simulation
