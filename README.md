@@ -13,7 +13,7 @@ https://youtu.be/DqgDdp_kmjQ
 ## Release Versions
 Most likely plug and play, just follow instruction on release.
 
-##Source code (Old Version)
+## Source code (Old Version)
 
 - Requires python 3.x 
 - Requires Tesseract 
@@ -48,6 +48,9 @@ Change threshold and margin to desired values (See FAQ for explenations.)
 
 7. Run program by running "python ocr.py" in the repo.
 ## FAQ
+
+#### What is the difference between OCR5FPS and OCR5FPT
+OCR5FPT is the old version, the version based on maintaining a certain amount of Frames Per Tick, while OCR5FPS is based on maintaining a certain FPS
 
 #### What is a "tick"
 
