@@ -9,6 +9,12 @@ Demo set to mantain 10 frames per tick with margin set to 2
 
 https://youtu.be/DqgDdp_kmjQ
 ## Installation And Usage
+
+## Release Versions
+Most likely plug and play, just follow instruction on release.
+
+##Source code (Old Version)
+
 - Requires python 3.x 
 - Requires Tesseract 
 
